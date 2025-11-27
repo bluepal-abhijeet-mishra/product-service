@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import API_BASE_URL from '../config';
 
 const ProductList = () => {
     const [products, setProducts] = useState([]);
@@ -23,7 +24,7 @@ const ProductList = () => {
                 return;
             }
             
-            const response = await axios.get('http://localhost:8080/api/products', {
+            const response = await axios.get(`${API_BASE_URL}/api/products`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setProducts(response.data);
@@ -46,7 +47,7 @@ const ProductList = () => {
 
         try {
             const token = localStorage.getItem('token');
-            await axios.delete(`http://localhost:8080/api/products/${id}`, {
+            await axios.delete(`${API_BASE_URL}/api/products/${id}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setProducts(products.filter(product => product.id !== id));

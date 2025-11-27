@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import API_BASE_URL from '../config';
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -21,7 +22,7 @@ const Login = () => {
         }
 
         try {
-            const response = await axios.post('http://localhost:8080/api/auth/login', { username, password });
+            const response = await axios.post(`${API_BASE_URL}/api/auth/login`, { username, password });
             console.log('Login response:', response.data);
             
             // Extract token from response object

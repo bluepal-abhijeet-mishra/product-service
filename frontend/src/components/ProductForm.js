@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams, Link } from 'react-router-dom';
+import API_BASE_URL from '../config';
 
 const ProductForm = () => {
     const [name, setName] = useState('');
@@ -21,7 +22,7 @@ const ProductForm = () => {
     const fetchProduct = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get(`http://localhost:8080/api/products/${id}`, {
+            const response = await axios.get(`${API_BASE_URL}/api/products/${id}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setName(response.data.name);
@@ -57,11 +58,11 @@ const ProductForm = () => {
             const token = localStorage.getItem('token');
             
             if (id) {
-                await axios.put(`http://localhost:8080/api/products/${id}`, product, {
+                await axios.put(`${API_BASE_URL}/api/products/${id}`, product, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
             } else {
-                await axios.post('http://localhost:8080/api/products', product, {
+                await axios.post(`${API_BASE_URL}/api/products`, product, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
             }
