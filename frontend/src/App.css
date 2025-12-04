@@ -1,5 +1,5 @@
 .App {
-  min-height: 100vh;
+
 }
 
 /* Common Styles */
@@ -301,6 +301,8 @@
 .products-container {
   min-height: 100vh;
   background: #f7fafc;
+  position: relative;
+  z-index: 1;
 }
 
 .products-header {
